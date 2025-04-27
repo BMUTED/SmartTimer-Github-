@@ -15,7 +15,7 @@ public class ProcessInfo
 //이 스크립트에서 할일 : 특정 주기마다, 등록된 창이 최상단에 있는지 검사하는 함수 완성하기
 public class ProgramCheck : MonoBehaviour
 {
-    [SerializeField] string targetProcessName = "notepad"; // 띄워져있을 때, 타이머가 돌아가게 만들고 싶은 프로그램의 이름을 확장자 없이 적어야함
+    [SerializeField] string targetProcessName = "Unity"; // 띄워져있을 때, 타이머가 돌아가게 만들고 싶은 프로그램의 이름을 확장자 없이 적어야함
 
     //주기 타이머의 진행 여부
     public bool IsPeriodTimerFlowing;
@@ -33,6 +33,8 @@ public class ProgramCheck : MonoBehaviour
     {
         PreviousProcess = new ProcessInfo();
         CurProcess = new ProcessInfo();
+
+        OnFocusProcessChanged += StartPeriodTimer;
     }
 
     private void Update()
@@ -54,6 +56,7 @@ public class ProgramCheck : MonoBehaviour
             {
                 PeriodTimer -= DefaultPeriodTime;
                 TimerManager.Instance.TimerFlowSC.ChangeTimeFlowing(IsTargetWindowFocused());
+                IsPeriodTimerFlowing = false;
             }
         }
     }
@@ -96,6 +99,16 @@ public class ProgramCheck : MonoBehaviour
         ProcessInfoToInit.Process = ProcessToSave;
         ProcessInfoToInit.ProcessID = ProcessIDToSave;
         ProcessInfoToInit.ProcessName = ProcessToSave.ProcessName;
+    }
+
+    /// <summary>
+    /// 주기 타이머를 시작하는 함수
+    /// </summary>
+    void StartPeriodTimer()
+    {
+        //주기 타이머가 흐를지에 대한 여부를, 스마트 타이머가 돌아가고 있는지에 대한 반대값으로 설정
+        IsPeriodTimerFlowing = true;
+        TimerManager.Instance.ProgramCheckSC.PeriodTimer = 0;
     }
 
 

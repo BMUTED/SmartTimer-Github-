@@ -50,13 +50,6 @@ public class TimerFlow : MonoBehaviour
     {
         IsTimeFlowing = Value;
 
-        //주기 타이머가 흐를지에 대한 여부를, 스마트 타이머가 돌아가고 있는지에 대한 반대값으로 설정
-        TimerManager.Instance.ProgramCheckSC.IsPeriodTimerFlowing = !Value;
-        if(!Value == false) //주기 타이머가 흐르지 말아야 할 상황이라면
-        {
-            TimerManager.Instance.ProgramCheckSC.PeriodTimer = 0;
-        }
-
         //글자 색을 시간이 흐르는지 아닌지 여부에 따라 변경
         if (Value) //IsTimeFlowing == True 일때
         {
