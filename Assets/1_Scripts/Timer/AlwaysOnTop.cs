@@ -31,14 +31,14 @@ public class AlwaysOnTop : MonoBehaviour
 
     void Start()
     {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
-    #else
+#else
             windowHandle = GetWindowHandle();
             SetTopmostAccordingToState();
 
-            TimerManager.Instance.ProgramCheckSC.OnFocusProcessChanged += SetTopmostAccordingToState;                 
-    #endif
+            GameManager.Instance.TimerManagerSC.ProgramCheckSC.OnFocusProcessChanged += SetTopmostAccordingToState;                 
+#endif
     }
 
     static IntPtr GetWindowHandle()

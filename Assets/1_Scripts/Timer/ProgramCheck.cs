@@ -21,7 +21,7 @@ public class ProgramCheck : MonoBehaviour
     public bool IsPeriodTimerFlowing;
 
     [Tooltip ("현재 최상단에 있는 창이 무엇인지 검사할 주기")]
-    [SerializeField] float DefaultPeriodTime; //현재 최상단에 있는 창이 무엇인지 검사할 주기
+    public float DefaultPeriodTime; //현재 최상단에 있는 창이 무엇인지 검사할 주기
     public float PeriodTimer; //주기 전용 타이머
 
     [SerializeField] ProcessInfo PreviousProcess;
@@ -55,7 +55,7 @@ public class ProgramCheck : MonoBehaviour
             if(PeriodTimer >= DefaultPeriodTime)
             {
                 PeriodTimer -= DefaultPeriodTime;
-                TimerManager.Instance.TimerFlowSC.ChangeTimeFlowing(IsTargetWindowFocused());
+                GameManager.Instance.TimerManagerSC.TimerFlowSC.TryChangeTimeFlowing(IsTargetWindowFocused());
                 IsPeriodTimerFlowing = false;
             }
         }
@@ -108,7 +108,7 @@ public class ProgramCheck : MonoBehaviour
     {
         //주기 타이머가 흐를지에 대한 여부를, 스마트 타이머가 돌아가고 있는지에 대한 반대값으로 설정
         IsPeriodTimerFlowing = true;
-        TimerManager.Instance.ProgramCheckSC.PeriodTimer = 0;
+        GameManager.Instance.TimerManagerSC.ProgramCheckSC.PeriodTimer = 0;
     }
 
 

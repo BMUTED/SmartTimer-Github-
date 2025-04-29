@@ -1,0 +1,243 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4363558374294741836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306486999446114194}
+  - component: {fileID: 1534102789248722237}
+  - component: {fileID: 6357719859589628493}
+  - component: {fileID: 5806611604512755615}
+  - component: {fileID: 8667865371295844769}
+  - component: {fileID: 5934242910921802064}
+  m_Layer: 0
+  m_Name: TimerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &306486999446114194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363558374294741836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 523515279370941094}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1534102789248722237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363558374294741836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e510202eb3aa884fa391718d0cc2558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerManagerSC: {fileID: 6357719859589628493}
+  SceneChangeManagerSC: {fileID: 5806611604512755615}
+  SaveManagerSC: {fileID: 5934242910921802064}
+  ScreenSizeManagerSC: {fileID: 8667865371295844769}
+  TimerSceneUI_Data: {fileID: 0}
+--- !u!114 &6357719859589628493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363558374294741836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e316d097499e33341b00d90bea88a7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerScript: {fileID: 8493864162232739168}
+  TimerColorSC: {fileID: 0}
+  ProgramCheckSC: {fileID: 8625091197747152685}
+  ShowTimerSC: {fileID: 2421041170700663576}
+  TimerFlowSC: {fileID: 8265966666420159927}
+  AFK_CheckerSC: {fileID: 6827941014656749483}
+--- !u!114 &5806611604512755615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363558374294741836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185b0249aa050e145bf983007845a18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSceneLoaded:
+    listeners: []
+  CurSceneName: Null
+--- !u!114 &8667865371295844769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363558374294741836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8442d1df4a430354084196802da326d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WasListOpened: 0
+--- !u!114 &5934242910921802064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363558374294741836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5126fdfc9506aa348ae90019c56e8724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8493864162232739168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523515279370941094}
+  - component: {fileID: 202903439579748357}
+  - component: {fileID: 6827941014656749483}
+  - component: {fileID: 8625091197747152685}
+  - component: {fileID: 2421041170700663576}
+  - component: {fileID: 8265966666420159927}
+  - component: {fileID: 3955149739287368644}
+  m_Layer: 0
+  m_Name: 0_TimerScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &523515279370941094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 306486999446114194}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &202903439579748357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca5bd20affccfe448d2177bee858c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6827941014656749483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3581e7abba53624788d6569959d14a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IdleLimitTime: 5
+  IdleTimer: 0
+--- !u!114 &8625091197747152685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f222eafc860834a97d6c6048f2a0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetProcessName: Unity
+  IsPeriodTimerFlowing: 1
+  DefaultPeriodTime: 3
+  PeriodTimer: 0
+  PreviousProcess:
+    ProcessName: 
+    ProcessID: 0
+  CurProcess:
+    ProcessName: 
+    ProcessID: 0
+--- !u!114 &2421041170700663576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5373c98c0e0f8444a606f2dbcf977de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataObject: {fileID: 0}
+  TimerText: {fileID: 0}
+--- !u!114 &8265966666420159927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879a183b68ed7564c9932d3dcc0cd0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsTimeFlowing: 0
+  HourTime: 0
+  MinuteTime: 0
+  SecondTime: 0
+--- !u!114 &3955149739287368644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493864162232739168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe958e18247ac24580198ce71f8c975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeFlowingColor: {r: 0, g: 0.37647063, b: 1, a: 1}
+  TimeStopColor: {r: 1, g: 0, b: 0.20000002, a: 1}
