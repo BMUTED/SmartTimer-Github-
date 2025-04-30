@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 244758286}
   - component: {fileID: 244758285}
   m_Layer: 5
-  m_Name: Add_RemoveButton (2)
+  m_Name: RemoveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,7 +359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 244758287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507813661}
+        m_TargetAssemblyTypeName: AddRemove_Button, Assembly-CSharp
+        m_MethodName: RemoveRegeisterButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &244758287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e9bcc7aefcf2445a820e84c3e4a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsListOpened: 0
 --- !u!1 &334833858
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +817,7 @@ GameObject:
   - component: {fileID: 685919730}
   - component: {fileID: 685919729}
   m_Layer: 5
-  m_Name: Add_RemoveButton (1)
+  m_Name: AddButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,7 +906,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 685919731}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507813661}
+        m_TargetAssemblyTypeName: AddRemove_Button, Assembly-CSharp
+        m_MethodName: AddRegeisterButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &685919731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +970,7 @@ GameObject:
   - component: {fileID: 851585044}
   - component: {fileID: 851585046}
   m_Layer: 5
-  m_Name: RegisterGroup
+  m_Name: ButtonGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1205,6 +1228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd9dbfc4cd290d43b1c07ff9d4b686d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &940729232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3944460057860985190, guid: f9e0ea3c710bbd6428516a05388dd72e, type: 3}
+  m_PrefabInstance: {fileID: 5594622841173127147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079025423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.49998474}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: -8, y: -2.9999995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1079025425
@@ -1570,7 +1598,7 @@ GameObject:
   - component: {fileID: 1390029499}
   - component: {fileID: 1390029501}
   m_Layer: 5
-  m_Name: ButtonGroup
+  m_Name: List_Add_Remove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2027,6 +2055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1507813657}
   - component: {fileID: 1507813660}
+  - component: {fileID: 1507813661}
   - component: {fileID: 1507813659}
   - component: {fileID: 1507813658}
   m_Layer: 5
@@ -2121,6 +2150,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507813656}
   m_CullTransparentMesh: 1
+--- !u!114 &1507813661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507813656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98eec7e55d0557a4289fdc7173d6c0a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RegisterButtons:
+  - {fileID: 940729232}
+  ButtonGroup: {fileID: 851585042}
+  RegisterPrefab: {fileID: 3944460057860985190, guid: f9e0ea3c710bbd6428516a05388dd72e, type: 3}
+  MaxButtonNum: 11
+  MinButtonNum: 1
 --- !u!224 &1547163014 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5652844900273719342, guid: f9e0ea3c710bbd6428516a05388dd72e, type: 3}
