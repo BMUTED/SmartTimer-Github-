@@ -28,6 +28,8 @@ public class AddRemove_Button : MonoBehaviour
             //버튼 생성 기능 실행
             GameObject NewRegisterButton = Instantiate(RegisterPrefab, transform.position, Quaternion.identity, ButtonGroup.transform);
             RegisterButtons.Add(NewRegisterButton);
+
+            NewRegisterButton.GetComponent<RegisterButton>().Index = RegisterButtons.Count-1;
         }
     }
 
@@ -36,6 +38,7 @@ public class AddRemove_Button : MonoBehaviour
         if (RegisterButtons.Count > MinButtonNum) //버튼이 1개 이상일때만
         {
             //버튼 삭제 기능 실행
+            RegisterButtons[RegisterButtons.Count - 1].GetComponent<RegisterButton>().RemoveCurrentProgramOnButton(); //매니저 속 정보
             Destroy(RegisterButtons[RegisterButtons.Count - 1]); //가장 마지막으로 생성했던 버튼 삭제
             RegisterButtons.RemoveAt(RegisterButtons.Count - 1); //리스트에서도 삭제
         }

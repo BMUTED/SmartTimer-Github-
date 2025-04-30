@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5652844900273719342}
   - component: {fileID: 4691294471124268115}
+  - component: {fileID: 8552743689745554262}
   - component: {fileID: 1276027482311677660}
   - component: {fileID: 1280214277333892445}
   - component: {fileID: 1094747745073565770}
@@ -161,7 +162,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3944460057860985190}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -182,6 +183,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3944460057860985190}
   m_CullTransparentMesh: 1
+--- !u!114 &8552743689745554262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944460057860985190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531979109d5e87b498cc8c06b2a93be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonText: {fileID: 1018621392722470074}
+  Index: 0
 --- !u!114 &1276027482311677660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +270,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1276027482311677660}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8552743689745554262}
+        m_TargetAssemblyTypeName: RegisterButton, Assembly-CSharp
+        m_MethodName: RegisterNewProgram
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1094747745073565770
 MonoBehaviour:
   m_ObjectHideFlags: 0

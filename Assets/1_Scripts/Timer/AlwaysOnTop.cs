@@ -37,7 +37,7 @@ public class AlwaysOnTop : MonoBehaviour
             windowHandle = GetWindowHandle();
             SetTopmostAccordingToState();
 
-            GameManager.Instance.TimerManagerSC.ProgramCheckSC.OnFocusProcessChanged += SetTopmostAccordingToState;                 
+            GameManager.Instance.TimerManagerSC.ProgramCheckSC.OnFocusProcessChanged.AddListener(SetTopmostAccordingToState, 0);                 
 #endif
     }
 

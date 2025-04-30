@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerScript: {fileID: 8493864162232739168}
-  TimerColorSC: {fileID: 0}
+  TimerColorSC: {fileID: 3955149739287368644}
   ProgramCheckSC: {fileID: 8625091197747152685}
   ShowTimerSC: {fileID: 2421041170700663576}
   TimerFlowSC: {fileID: 8265966666420159927}
@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3581e7abba53624788d6569959d14a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IdleLimitTime: 5
   IdleTimer: 0
 --- !u!114 &8625091197747152685
 MonoBehaviour:
@@ -187,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f222eafc860834a97d6c6048f2a0ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetProcessName: Unity
+  TargetProcessName: []
   IsPeriodTimerFlowing: 1
   DefaultPeriodTime: 3
   PeriodTimer: 0
@@ -223,7 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879a183b68ed7564c9932d3dcc0cd0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsTimeFlowing: 0
   HourTime: 0
   MinuteTime: 0
   SecondTime: 0

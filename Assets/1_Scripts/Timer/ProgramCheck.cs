@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class ProcessInfo
 //이 스크립트에서 할일 : 특정 주기마다, 등록된 창이 최상단에 있는지 검사하는 함수 완성하기
 public class ProgramCheck : MonoBehaviour
 {
-    [SerializeField] string targetProcessName = "Unity"; // 띄워져있을 때, 타이머가 돌아가게 만들고 싶은 프로그램의 이름을 확장자 없이 적어야함
+    [Tooltip ("절대 인스펙터에서 수정하지 말건, 디버깅 용도임")]
+    public List<string> TargetProcessName; // 띄워져있을 때, 타이머가 돌아가게 만들고 싶은 프로그램의 이름을 확장자 없이 적어야함
 
     //주기 타이머의 진행 여부
     public bool IsPeriodTimerFlowing;
@@ -27,14 +29,16 @@ public class ProgramCheck : MonoBehaviour
     [SerializeField] ProcessInfo PreviousProcess;
     [SerializeField] ProcessInfo CurProcess;
 
-    public event Action OnFocusProcessChanged; //새로운 창을 띄웠을 때 호출될 이벤트
+    public PriorityEvent OnFocusProcessChanged; //새로운 창을 띄웠을 때 호출될 이벤트
 
     private void Start()
     {
         PreviousProcess = new ProcessInfo();
         CurProcess = new ProcessInfo();
 
-        OnFocusProcessChanged += StartPeriodTimer;
+        TargetProcessName = new List<string>();
+
+        OnFocusProcessChanged.AddListener(StartPeriodTimer, 0);
     }
 
     private void Update()
@@ -45,7 +49,7 @@ public class ProgramCheck : MonoBehaviour
     }
 
     /// <summary>
-    /// 특정 주기마다, 현재 최상단에 띄워진 프로그램이 무엇인지 확인하는 함수 (미완)
+    /// 특정 주기마다, 현재 최상단에 띄워진 프로그램이 무엇인지 확인하는 함수
     /// </summary>
     void CheckFocusEveryPeriod()
     {
@@ -55,7 +59,16 @@ public class ProgramCheck : MonoBehaviour
             if(PeriodTimer >= DefaultPeriodTime)
             {
                 PeriodTimer -= DefaultPeriodTime;
-                GameManager.Instance.TimerManagerSC.TimerFlowSC.TryChangeTimeFlowing(IsTargetWindowFocused());
+                bool IsTargetProcessOnTop = false;
+                for (int Index = 0; Index < TargetProcessName.Count; Index++)
+                {
+                    IsTargetProcessOnTop = IsTargetWindowFocused(TargetProcessName[Index]);
+                    if(IsTargetProcessOnTop) //등록된 프로그램들 중에서, 한가지라도 포커싱 되어있는게 감지된 경우
+                    {
+                        break; //For문 탈출하기
+                    }
+                }
+                GameManager.Instance.TimerManagerSC.TimerFlowSC.TryChangeTimeFlowing(IsTargetProcessOnTop);
                 IsPeriodTimerFlowing = false;
             }
         }
@@ -83,7 +96,7 @@ public class ProgramCheck : MonoBehaviour
             if (PreviousProcess.Process.ProcessName != CurProcess.Process.ProcessName)
             {
                 UnityEngine.Debug.Log($"새로운 창을 띄운것을 확인함");
-                OnFocusProcessChanged?.Invoke();
+                OnFocusProcessChanged.Invoke();
             }
         }
     }
@@ -117,10 +130,10 @@ public class ProgramCheck : MonoBehaviour
     /// <summary>
     /// 현재 등록되어있는 프로그램이 포커스 되어있는지를 확인하는 함수
     /// </summary>
-    bool IsTargetWindowFocused()
+    bool IsTargetWindowFocused(string ProcessNameToCheck)
     {
-        var targetProcesses = Process.GetProcessesByName(targetProcessName);
-        if (targetProcesses.Length == 0)
+        var targetProcesses = Process.GetProcessesByName(ProcessNameToCheck);
+        if (targetProcesses.Length == 0) //TargetProcess라는 이름의 프로그램이 하나도 없는 경우
             return false;
 
         IntPtr foregroundWindow = GetForegroundWindow();
@@ -138,7 +151,7 @@ public class ProgramCheck : MonoBehaviour
     /// <summary>
     /// 가장 최상단에 있는 프로그램의 이름을 가져와 등록하는 함수
     /// </summary>
-    void RegisterCurrentTopProgram()
+    public void RegisterCurrentTopProgram(int Index)
     {
         IntPtr topWindow = GetForegroundWindow();
         GetWindowThreadProcessId(topWindow, out uint processID);
@@ -148,7 +161,24 @@ public class ProgramCheck : MonoBehaviour
             try
             {
                 Process CurProcess = Process.GetProcessById((int)processID);
-                targetProcessName = CurProcess.ProcessName; // 자동으로 저장!
+                if(TargetProcessName.Count > Index) //리스트에 인덱스 번호 자리가 있는 경우
+                {
+                    TargetProcessName[Index] = CurProcess.ProcessName;
+
+                }
+                else //리스트 크기가 작아, 새로운 프로그램을 저장할 수 없는 경우
+                {
+                    int CreatNum = Index - TargetProcessName.Count; //만들어야할 방 갯수
+                    //반복문으로 필요한 만큼 칸을 만들고
+                    for (int i = 0; i < (CreatNum + 1); i++)
+                    {
+                        TargetProcessName.Add(string.Empty); 
+                    }
+
+                    //칸이 다 만들어졌으니, 원래 넣을려고 했던 인덱스 번호 자리에 프로그램 이름 저장하기
+                    TargetProcessName[Index] = CurProcess.ProcessName;
+                }
+                
 
                 UnityEngine.Debug.Log($"✅ 등록 완료: {CurProcess.ProcessName} (PID {processID})");
             }
