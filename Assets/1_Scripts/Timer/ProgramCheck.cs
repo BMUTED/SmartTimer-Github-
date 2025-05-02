@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -36,9 +37,10 @@ public class ProgramCheck : MonoBehaviour
         PreviousProcess = new ProcessInfo();
         CurProcess = new ProcessInfo();
 
-        TargetProcessName = new List<string>();
+        TargetProcessName = GameManager.Instance.SaveManagerSC.SaveData.RegisterdProcessNames;
 
         OnFocusProcessChanged.AddListener(StartPeriodTimer, 0);
+        OnFocusProcessChanged.AddListener(ReturnNewProgram, 0);
     }
 
     private void Update()
@@ -125,6 +127,33 @@ public class ProgramCheck : MonoBehaviour
     }
 
 
+    #region RegisterButton에서 사용하는 기능들에 관한 코드들
+
+    public bool IsRegistingProgam; //새로운 프로그램을 등록시키려고 대기중인지를 의미하는 불값
+
+    public float CheckProgramNum;
+    public int RegisterIndex; //저장할 프로그램의 위치 인덱스
+
+    /// <summary>
+    /// 새로운 프로그램을 감지하는데 사용되는 함수
+    /// RegisterButton의 함수에서 사용됨
+    /// </summary>
+    void ReturnNewProgram()
+    {
+        if(IsRegistingProgam)
+        {
+            CheckProgramNum += 1;
+
+            if(CheckProgramNum >= 2)
+            {
+                RegisterCurrentTopProgram(RegisterIndex);
+                IsRegistingProgam = false;
+            }
+        }
+    }
+
+    #endregion
+
     #region 프로그램 등록 및, 현재 최상단 창인지 검사하는 함수들
 
     /// <summary>
@@ -164,7 +193,6 @@ public class ProgramCheck : MonoBehaviour
                 if(TargetProcessName.Count > Index) //리스트에 인덱스 번호 자리가 있는 경우
                 {
                     TargetProcessName[Index] = CurProcess.ProcessName;
-
                 }
                 else //리스트 크기가 작아, 새로운 프로그램을 저장할 수 없는 경우
                 {
@@ -172,7 +200,7 @@ public class ProgramCheck : MonoBehaviour
                     //반복문으로 필요한 만큼 칸을 만들고
                     for (int i = 0; i < (CreatNum + 1); i++)
                     {
-                        TargetProcessName.Add(string.Empty); 
+                        TargetProcessName.Add("Set Program");
                     }
 
                     //칸이 다 만들어졌으니, 원래 넣을려고 했던 인덱스 번호 자리에 프로그램 이름 저장하기

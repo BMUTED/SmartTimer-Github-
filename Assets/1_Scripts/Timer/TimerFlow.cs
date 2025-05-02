@@ -5,22 +5,23 @@ using UnityEngine;
 
 public class TimerFlow : MonoBehaviour
 {
+    SaveDatas SaveData;
+
     public bool IsTimeFlowing { get; private set; }
     public bool TryTimeFlowing { get; private set; } //특정 프로그램을 켜놔서, 타이머의 시간이 흘러야 하는 경우
 
-    //특정 프로그램을 켜놓은 시간을 저장할 변수들
-    public float HourTime;
-    public float MinuteTime;
-    public float SecondTime;
+    public bool IsTimerForceStopped;
 
     private void Start()
     {
         GameManager.Instance.SceneChangeManagerSC.OnSceneLoaded.AddListener(SyncronizeTimeColor, 11);
+
+        SaveData = GameManager.Instance.SaveManagerSC.SaveData;
     }
 
     private void Update()
     {
-        if (IsTimeFlowing)
+        if (IsTimeFlowing && !IsTimerForceStopped)
         {
             TimeFlowing();
         }
@@ -32,17 +33,17 @@ public class TimerFlow : MonoBehaviour
     /// </summary>
     void TimeFlowing()
     {
-        SecondTime += Time.deltaTime;
+        SaveData.SecondTime += Time.deltaTime;
 
         //시간이 60초를 넘어간 경우
-        if(SecondTime >= 60)
+        if(SaveData.SecondTime >= 60)
         {
-            SecondTime -= 60; //60만큼 빼기 (소숫값이 사라질 수 있으니 0 으로 수동 초기화하지 않을것임)
-            MinuteTime += 1;
-            if (MinuteTime >= 60)
+            SaveData.SecondTime -= 60; //60만큼 빼기 (소숫값이 사라질 수 있으니 0 으로 수동 초기화하지 않을것임)
+            SaveData.MinuteTime += 1;
+            if (SaveData.MinuteTime >= 60)
             {
-                MinuteTime -= 60;
-                HourTime += 1;
+                SaveData.MinuteTime -= 60;
+                SaveData.HourTime += 1;
             }
         }
     }

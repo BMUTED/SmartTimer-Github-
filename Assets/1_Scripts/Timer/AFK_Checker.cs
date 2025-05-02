@@ -7,6 +7,10 @@ using UnityEngine;
 /// <summary>
 /// 잠수 상태인지 아닌지 확인하는 기능을 하는 스크립트 <br/>
 /// 잠수 상태 확인용 타이머도 이 스크립트에서 돌아감
+/// <para>
+/// + 현재 이 스크립트의 기능은 사용되고 있지 않음, Update 문에 있는 두 함수의 주석처리를 취소하면 작동은 하겠지만, 잠수 상태 판별이 정확하지 않은 문제가 존재함 <br/>
+/// (Window API를 이용했음에도 불구, 타이머 프로그램이 포커싱 되어있지 않을 때에는, 키보드 입력과, 마우스의 위치 이동을 감지하지 못하는 문제가 빈번하게 발생)
+/// </para>
 /// </summary>
 public class AFK_Checker : MonoBehaviour
 {
@@ -24,8 +28,8 @@ public class AFK_Checker : MonoBehaviour
 
     private void Update()
     {
-        InputDetecting();
-        AFKTimerFlowing();
+        //InputDetecting();
+        //AFKTimerFlowing();
     }
 
     /// <summary>

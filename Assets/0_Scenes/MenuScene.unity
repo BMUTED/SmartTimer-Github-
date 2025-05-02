@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1580,6 +1580,14 @@ PrefabInstance:
       propertyPath: CurSceneName
       value: MenuScene
       objectReference: {fileID: 0}
+    - target: {fileID: 5934242910921802064, guid: 054f7921244475a44a85ea554b5f03bf, type: 3}
+      propertyPath: SaveData.RegisterdProcessNames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934242910921802064, guid: 054f7921244475a44a85ea554b5f03bf, type: 3}
+      propertyPath: SaveData.RegisterdProcessNames.Array.data[0]
+      value: Unity
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1911,6 +1919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlaceHolder: {fileID: 1647161107}
+  TimeOut_InputField: {fileID: 1444658076}
 --- !u!1 &1462033670
 GameObject:
   m_ObjectHideFlags: 0
