@@ -8,7 +8,7 @@ public class TimerFlow : MonoBehaviour
     SaveDatas SaveData;
 
     public bool IsTimeFlowing { get; private set; }
-    public bool TryTimeFlowing { get; private set; } //Æ¯Á¤ ÇÁ·Î±×·¥À» ÄÑ³ö¼­, Å¸ÀÌ¸ÓÀÇ ½Ã°£ÀÌ Èê·¯¾ß ÇÏ´Â °æ¿ì
+    public bool TryTimeFlowing { get; private set; } //íŠ¹ì • í”„ë¡œê·¸ë¨ì„ ì¼œë†”ì„œ, íƒ€ì´ë¨¸ì˜ ì‹œê°„ì´ í˜ëŸ¬ì•¼ í•˜ëŠ” ê²½ìš°
 
     public bool IsTimerForceStopped;
 
@@ -28,17 +28,17 @@ public class TimerFlow : MonoBehaviour
     }
 
     /// <summary>
-    /// Å¸ÀÌ¸ÓÀÇ ½Ã°£ÀÌ Èå¸£°Ô ¸¸µå´Â ÇÔ¼ö
-    /// ÃÊ ºĞ ½Ã ´ÜÀ§·Î ³ª´²¼­, 60ÃÊÀÎ °æ¿ì, 1ºĞÀ¸·Î ¹Ù²î´Â ±×·± ±â´Éµé±îÁö Æ÷ÇÔÇÔ
+    /// íƒ€ì´ë¨¸ì˜ ì‹œê°„ì´ íë¥´ê²Œ ë§Œë“œëŠ” í•¨ìˆ˜
+    /// ì´ˆ ë¶„ ì‹œ ë‹¨ìœ„ë¡œ ë‚˜ëˆ ì„œ, 60ì´ˆì¸ ê²½ìš°, 1ë¶„ìœ¼ë¡œ ë°”ë€ŒëŠ” ê·¸ëŸ° ê¸°ëŠ¥ë“¤ê¹Œì§€ í¬í•¨í•¨
     /// </summary>
     void TimeFlowing()
     {
         SaveData.SecondTime += Time.deltaTime;
 
-        //½Ã°£ÀÌ 60ÃÊ¸¦ ³Ñ¾î°£ °æ¿ì
+        //ì‹œê°„ì´ 60ì´ˆë¥¼ ë„˜ì–´ê°„ ê²½ìš°
         if(SaveData.SecondTime >= 60)
         {
-            SaveData.SecondTime -= 60; //60¸¸Å­ »©±â (¼Ò¼ı°ªÀÌ »ç¶óÁú ¼ö ÀÖÀ¸´Ï 0 À¸·Î ¼öµ¿ ÃÊ±âÈ­ÇÏÁö ¾ÊÀ»°ÍÀÓ)
+            SaveData.SecondTime -= 60; //60ë§Œí¼ ë¹¼ê¸° (ì†Œìˆ«ê°’ì´ ì‚¬ë¼ì§ˆ ìˆ˜ ìˆìœ¼ë‹ˆ 0 ìœ¼ë¡œ ìˆ˜ë™ ì´ˆê¸°í™”í•˜ì§€ ì•Šì„ê²ƒì„)
             SaveData.MinuteTime += 1;
             if (SaveData.MinuteTime >= 60)
             {
@@ -49,8 +49,8 @@ public class TimerFlow : MonoBehaviour
     }
 
     /// <summary>
-    /// IsTimeFlowingÀÇ °ªÀ» ¹Ù²Ù°í ½ÍÀ»¶§ È£ÃâÇÏ´Â ÇÔ¼ö
-    /// IsTimeFlowingÀÇ °ª¿¡ µû¶ó, Å¸ÀÌ¸ÓÀÇ »öÀÌ º¯ÇØ¾ß ÇÏ±â ¶§¹®¿¡ ÇÔ¼ö·Î ¸¸µé¾úÀ½
+    /// IsTimeFlowingì˜ ê°’ì„ ë°”ê¾¸ê³  ì‹¶ì„ë•Œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
+    /// IsTimeFlowingì˜ ê°’ì— ë”°ë¼, íƒ€ì´ë¨¸ì˜ ìƒ‰ì´ ë³€í•´ì•¼ í•˜ê¸° ë•Œë¬¸ì— í•¨ìˆ˜ë¡œ ë§Œë“¤ì—ˆìŒ
     /// </summary>
     /// <param name="Value"></param>
     public void TryChangeTimeFlowing(bool Value)
@@ -61,12 +61,12 @@ public class TimerFlow : MonoBehaviour
     }
 
     /// <summary>
-    /// TimeFlowing°ú AFKChecker ¼Ó IsTimerStopBeingAFK°¡ °¢°¢ ¸Â¾Æ¶³¾îÁ®¼­, IsTimeFlowingÀÌ True°¡ µÉ ¶§ÀÎÁö¸¦ È®ÀÎÇÒ ¶§, È£ÃâÇÏ´Â ÇÔ¼ö <br/>
-    /// TimeFlowSC ¼Ó TryTimeFlowingÀ» ¼öÁ¤ÇÏ°Å³ª, AFK_Checker¼Ó IsTimerStopBeingAFK¸¦ ¼öÁ¤ÇÒ ¶§, ¹«Á¶°ÇÀûÀ¸·Î È£ÃâÇØ¾ßÇÏ´Â ÇÔ¼öÀÌ´Ù
+    /// TimeFlowingê³¼ AFKChecker ì† IsTimerStopBeingAFKê°€ ê°ê° ë§ì•„ë–¨ì–´ì ¸ì„œ, IsTimeFlowingì´ Trueê°€ ë  ë•Œì¸ì§€ë¥¼ í™•ì¸í•  ë•Œ, í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ <br/>
+    /// TimeFlowSC ì† TryTimeFlowingì„ ìˆ˜ì •í•˜ê±°ë‚˜, AFK_Checkerì† IsTimerStopBeingAFKë¥¼ ìˆ˜ì •í•  ë•Œ, ë¬´ì¡°ê±´ì ìœ¼ë¡œ í˜¸ì¶œí•´ì•¼í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤
     /// </summary>
     public void TimeFlowingCheck()
     {
-        //Àá¼ö »óÅÂ°¡ ¾Æ´Ï°í, Æ÷Ä¿½ºµÈ Ã¢ÀÌ µî·ÏµÇ¾îÀÖ´Â Ã¢ÀÏ¶§ (Áï, Å¸ÀÌ¸Ó°¡ Èê·¯¾ßÇÒ »óÈ²ÀÏ ¶§)
+        //ì ìˆ˜ ìƒíƒœê°€ ì•„ë‹ˆê³ , í¬ì»¤ìŠ¤ëœ ì°½ì´ ë“±ë¡ë˜ì–´ìˆëŠ” ì°½ì¼ë•Œ (ì¦‰, íƒ€ì´ë¨¸ê°€ í˜ëŸ¬ì•¼í•  ìƒí™©ì¼ ë•Œ)
         if (TryTimeFlowing && GameManager.Instance.TimerManagerSC.AFK_CheckerSC.IsTimerStopBeingAFK == false)
         {
             IsTimeFlowing = true;
@@ -78,13 +78,13 @@ public class TimerFlow : MonoBehaviour
 
         if (GameManager.Instance.SceneChangeManagerSC.CurSceneName == "TimerScene")
         {
-            //±ÛÀÚ »öÀ» ½Ã°£ÀÌ Èå¸£´ÂÁö ¾Æ´ÑÁö ¿©ºÎ¿¡ µû¶ó º¯°æ
-            if (IsTimeFlowing) //IsTimeFlowing == True ÀÏ¶§
+            //ê¸€ì ìƒ‰ì„ ì‹œê°„ì´ íë¥´ëŠ”ì§€ ì•„ë‹Œì§€ ì—¬ë¶€ì— ë”°ë¼ ë³€ê²½
+            if (IsTimeFlowing) //IsTimeFlowing == True ì¼ë•Œ
             {
                 ChangeTimerColor(true);
             }
 
-            else //IsTimeFlowing == False ÀÏ¶§
+            else //IsTimeFlowing == False ì¼ë•Œ
             {
                 ChangeTimerColor(false);
             }
@@ -92,26 +92,26 @@ public class TimerFlow : MonoBehaviour
     }
 
     /// <summary>
-    /// ÅØ½ºÆ® »öÀ» Å¸ÀÌ¸Ó°¡ Èå¸£°íÀÖ´ÂÁö¿¡ ´ëÇÑ ¿©ºÎ¿¡ µû¶ó º¯°æÇÏ´Â ÇÔ¼ö
-    /// SceneChangeManager ¼Ó OnSceneLoaded ÀÌº¥Æ®¿¡ ±¸µ¶ÇÏ¿© »ç¿ë
+    /// í…ìŠ¤íŠ¸ ìƒ‰ì„ íƒ€ì´ë¨¸ê°€ íë¥´ê³ ìˆëŠ”ì§€ì— ëŒ€í•œ ì—¬ë¶€ì— ë”°ë¼ ë³€ê²½í•˜ëŠ” í•¨ìˆ˜
+    /// SceneChangeManager ì† OnSceneLoaded ì´ë²¤íŠ¸ì— êµ¬ë…í•˜ì—¬ ì‚¬ìš©
     /// </summary>
-    void SyncronizeTimeColor()
+    public void SyncronizeTimeColor()
     {
-        //±ÛÀÚ »öÀ» ½Ã°£ÀÌ Èå¸£´ÂÁö ¾Æ´ÑÁö ¿©ºÎ¿¡ µû¶ó º¯°æ
-        if (TryTimeFlowing) //IsTimeFlowing == True ÀÏ¶§
+        //ê¸€ì ìƒ‰ì„ ì‹œê°„ì´ íë¥´ëŠ”ì§€ ì•„ë‹Œì§€ ì—¬ë¶€ì— ë”°ë¼ ë³€ê²½
+        if (TryTimeFlowing) //IsTimeFlowing == True ì¼ë•Œ
         {
             ChangeTimerColor(true);
         }
-        else //IsTimeFlowing == False ÀÏ¶§
+        else //IsTimeFlowing == False ì¼ë•Œ
         {
             ChangeTimerColor(false);
         }
     }
 
     /// <summary>
-    /// Å¸ÀÌ¸ÓÀÇ »öÀ» º¯°æÇÒ¶§, »ç¿ëÇÏ´Â ÇÔ¼ö
+    /// íƒ€ì´ë¨¸ì˜ ìƒ‰ì„ ë³€ê²½í• ë•Œ, ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
-    /// <param name="IsTimerFlowing">True == Çª¸¥»ö (Å¸ÀÌ¸Ó Èå¸¦¶§) / False == ºÓÀº»ö (Å¸ÀÌ¸Ó ¸ØÃã)</param>
+    /// <param name="IsTimerFlowing">True == í‘¸ë¥¸ìƒ‰ (íƒ€ì´ë¨¸ íë¥¼ë•Œ) / False == ë¶‰ì€ìƒ‰ (íƒ€ì´ë¨¸ ë©ˆì¶¤)</param>
     public void ChangeTimerColor(bool IsTimerFlowing)
     {
         if (IsTimerFlowing)

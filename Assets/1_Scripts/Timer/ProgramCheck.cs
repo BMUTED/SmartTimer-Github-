@@ -91,13 +91,13 @@ public class ProgramCheck : MonoBehaviour
 
         InitProcessInfo(CurProcess, Process.GetProcessById((int)processID), processID);
 
-        UnityEngine.Debug.Log($"현재 최상단에 있는 프로그램은 {CurProcess.Process.ProcessName} 입니다");
+        //UnityEngine.Debug.Log($"현재 최상단에 있는 프로그램은 {CurProcess.Process.ProcessName} 입니다");
 
         if(PreviousProcess.Process != null && CurProcess.Process != null)
         {
             if (PreviousProcess.Process.ProcessName != CurProcess.Process.ProcessName)
             {
-                UnityEngine.Debug.Log($"새로운 창을 띄운것을 확인함");
+                //UnityEngine.Debug.Log($"새로운 창을 띄운것을 확인함");
                 OnFocusProcessChanged.Invoke();
             }
         }

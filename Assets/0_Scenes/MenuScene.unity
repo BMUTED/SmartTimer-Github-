@@ -497,7 +497,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 314865340}
         m_TargetAssemblyTypeName: OpenList_Button, Assembly-CSharp
-        m_MethodName: OpenClose_List
+        m_MethodName: OpenClose_List_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -577,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e9bcc7aefcf2445a820e84c3e4a007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonText: {fileID: 2121160470}
 --- !u!1 &334833858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,14 +1581,6 @@ PrefabInstance:
       propertyPath: CurSceneName
       value: MenuScene
       objectReference: {fileID: 0}
-    - target: {fileID: 5934242910921802064, guid: 054f7921244475a44a85ea554b5f03bf, type: 3}
-      propertyPath: SaveData.RegisterdProcessNames.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5934242910921802064, guid: 054f7921244475a44a85ea554b5f03bf, type: 3}
-      propertyPath: SaveData.RegisterdProcessNames.Array.data[0]
-      value: Unity
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2564,7 +2557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Open List
+  m_text: Close List
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4443f474e30b670488fdbce6b40533de, type: 2}
   m_sharedMaterial: {fileID: 3208286140629122078, guid: 4443f474e30b670488fdbce6b40533de, type: 2}

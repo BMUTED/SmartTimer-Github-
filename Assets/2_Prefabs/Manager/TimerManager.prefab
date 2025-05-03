@@ -112,6 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5126fdfc9506aa348ae90019c56e8724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveData:
+    RegistedProgramNum: 1
+    RegisterdProcessNames:
+    - Set Program
+    HourTime: 0
+    MinuteTime: 0
+    SecondTime: 0
+  OnSaveFileLoaded:
+    listeners: []
 --- !u!1 &8493864162232739168
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +205,11 @@ MonoBehaviour:
   CurProcess:
     ProcessName: 
     ProcessID: 0
+  OnFocusProcessChanged:
+    listeners: []
+  IsRegistingProgam: 0
+  CheckProgramNum: 0
+  RegisterIndex: 0
 --- !u!114 &2421041170700663576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,9 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879a183b68ed7564c9932d3dcc0cd0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HourTime: 0
-  MinuteTime: 0
-  SecondTime: 0
+  IsTimerForceStopped: 0
 --- !u!114 &3955149739287368644
 MonoBehaviour:
   m_ObjectHideFlags: 0

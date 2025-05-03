@@ -2,26 +2,25 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SceneChangeManager : MonoBehaviour
 {
-    #region º¯¼öµé
+    #region ë³€ìˆ˜ë“¤
     /// <summary>
-    /// ¾ÀÀÌ ¿ÏÀüÈ÷ ·ÎµùµÇ¾úÀ» ¶§, È£ÃâµÇ´Â ÀÌº¥Æ®
+    /// ì”¬ì´ ì™„ì „íˆ ë¡œë”©ë˜ì—ˆì„ ë•Œ, í˜¸ì¶œë˜ëŠ” ì´ë²¤íŠ¸
     /// </summary>
     public PriorityEvent OnSceneLoaded;
 
     /// <summary>
-    /// ÇöÀç ¾À ÀÌ¸§À» ¹İÈ¯ÇÏ´Â º¯¼ö (¾ÀÀÌ º¯°æµÇ´Â µµÁß¿¡´Â, ·ÎµùÀÌ ³¡³ª±â Àü¿¡´Â º¯°æ ´çÇÏ°í ÀÖ´Â ¾ÀÀÇ ÀÌ¸§ÀÌ ³ª¿È)
+    /// í˜„ì¬ ì”¬ ì´ë¦„ì„ ë°˜í™˜í•˜ëŠ” ë³€ìˆ˜ (ì”¬ì´ ë³€ê²½ë˜ëŠ” ë„ì¤‘ì—ëŠ”, ë¡œë”©ì´ ëë‚˜ê¸° ì „ì—ëŠ” ë³€ê²½ ë‹¹í•˜ê³  ìˆëŠ” ì”¬ì˜ ì´ë¦„ì´ ë‚˜ì˜´)
     /// </summary>
     public string CurSceneName;
     #endregion 
 
     /// <summary>
-    /// ¾ÀÀ» ºñµ¿±â·Î ·ÎµåÇÕ´Ï´Ù.
+    /// ì”¬ì„ ë¹„ë™ê¸°ë¡œ ë¡œë“œí•©ë‹ˆë‹¤.
     /// </summary>
-    /// <param name="sceneName">·ÎµåÇÒ ¾À ÀÌ¸§</param>
+    /// <param name="sceneName">ë¡œë“œí•  ì”¬ ì´ë¦„</param>
     public void ChangeScene(string sceneName)
     {
         StartCoroutine(LoadSceneCoroutine(sceneName));
@@ -29,39 +28,41 @@ public class SceneChangeManager : MonoBehaviour
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        // ¾À ºñµ¿±â ·Îµå ½ÃÀÛ (LoadSceneMode.Single·Î ÇöÀç ¾ÀÀ» µ¤¾î¾´´Ù)
+        // ì”¬ ë¹„ë™ê¸° ë¡œë“œ ì‹œì‘ (LoadSceneMode.Singleë¡œ í˜„ì¬ ì”¬ì„ ë®ì–´ì“´ë‹¤)
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
-        // ¾ÀÀÌ ¹Ù·Î È°¼ºÈ­µÇ´Â °É ¸·´Â´Ù
+        // ì”¬ì´ ë°”ë¡œ í™œì„±í™”ë˜ëŠ” ê±¸ ë§‰ëŠ”ë‹¤
         asyncOperation.allowSceneActivation = false;
 
-        // ·ÎµùÀÌ ¿Ï·áµÉ ¶§±îÁö ´ë±â
+        // ë¡œë”©ì´ ì™„ë£Œë  ë•Œê¹Œì§€ ëŒ€ê¸°
         while (asyncOperation.progress < 0.9f)
         {
-            // ·Îµù ÁøÇà·ü ¾÷µ¥ÀÌÆ® °¡´É (0.0 ~ 0.9±îÁö °¨)
+            // ë¡œë”© ì§„í–‰ë¥  ì—…ë°ì´íŠ¸ ê°€ëŠ¥ (0.0 ~ 0.9ê¹Œì§€ ê°)
             float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
-            // (ÇÊ¿äÇÏ¸é ¿©±â¿¡ ·Îµù UI ¾÷µ¥ÀÌÆ® ÄÚµå »ğÀÔ)
+            // (í•„ìš”í•˜ë©´ ì—¬ê¸°ì— ë¡œë”© UI ì—…ë°ì´íŠ¸ ì½”ë“œ ì‚½ì…)
 
             yield return null;
         }
 
-        // ·Îµù ¿Ï·á »óÅÂ(progress == 0.9) µµ´ŞÇßÀ¸¹Ç·Î, ÀÌÁ¦ ¾À È°¼ºÈ­¸¦ Çã¿ë
+        // ë¡œë”© ì™„ë£Œ ìƒíƒœ(progress == 0.9) ë„ë‹¬í–ˆìœ¼ë¯€ë¡œ, ì´ì œ ì”¬ í™œì„±í™”ë¥¼ í—ˆìš©
         asyncOperation.allowSceneActivation = true;
 
-        // ¾ÆÁÖ Áß¿ä: ¾ÀÀÌ ½ÇÁ¦·Î "È°¼ºÈ­"µÉ ¶§±îÁö ÇÑ ÇÁ·¹ÀÓ ´ë±â
+        // ì•„ì£¼ ì¤‘ìš”: ì”¬ì´ ì‹¤ì œë¡œ "í™œì„±í™”"ë  ë•Œê¹Œì§€ í•œ í”„ë ˆì„ ëŒ€ê¸°
         yield return null;
 
-        // ¿©±â¼­ºÎÅÍ´Â »õ ¾ÀÀÇ ¿ÀºêÁ§Æ®µéÀÌ ÀüºÎ »ì¾ÆÀÖ´Â »óÅÂ
+        // ì—¬ê¸°ì„œë¶€í„°ëŠ” ìƒˆ ì”¬ì˜ ì˜¤ë¸Œì íŠ¸ë“¤ì´ ì „ë¶€ ì‚´ì•„ìˆëŠ” ìƒíƒœ
         CurSceneName = sceneName;
-        OnSceneLoaded?.Invoke(); // ¾ÈÀüÇÏ°Ô È£Ãâ: ÀÌÁ¦ FindWithTag() ¼º°øÇÔ
 
-        // (ÇÊ¿äÇÏ¸é ¿©±â ÀÌÈÄ¿¡ Ãß°¡ Ã³¸® °¡´É)
+        // (í•„ìš”í•˜ë©´ ì—¬ê¸° ì´í›„ì— ì¶”ê°€ ì²˜ë¦¬ ê°€ëŠ¥)
 
-        // asyncOperationÀÌ ¿ÏÀüÈ÷ ³¡³¯ ¶§±îÁö ±â´Ù¸± ¼öµµ ÀÖÀ½
+        // asyncOperationì´ ì™„ì „íˆ ëë‚  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦´ ìˆ˜ë„ ìˆìŒ
         while (!asyncOperation.isDone)
         {
             yield return null;
         }
+
+        // asyncOperationì´ ì™„ì „íˆ ëë‚œ ë‹¤ìŒì— ì´ë²¤íŠ¸ í˜¸ì¶œ
+        OnSceneLoaded?.Invoke(); // ì•ˆì „í•˜ê²Œ í˜¸ì¶œ: ì´ì œ FindWithTag() ì„±ê³µí•¨
     }
 }

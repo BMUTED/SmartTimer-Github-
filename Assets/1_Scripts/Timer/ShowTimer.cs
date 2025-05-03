@@ -5,8 +5,6 @@ using UnityEngine;
 public class ShowTimer : MonoBehaviour
 {
     SaveDatas Savedata;
-    
-    public GameObject DataObject;
 
     //시간을 표시할 타이머 텍스트
     public TextMeshProUGUI TimerText;
@@ -23,7 +21,7 @@ public class ShowTimer : MonoBehaviour
         EqualTimerOnText();
     }
 
-    void ResearchTimerText()
+    public void ResearchTimerText()
     {
         if(TimerText == null)
         {

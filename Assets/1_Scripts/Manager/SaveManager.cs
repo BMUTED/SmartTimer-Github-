@@ -20,18 +20,18 @@ public class SaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ Á¾·áµÉ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    /// ì• í”Œë¦¬ì¼€ì´ì…˜ì´ ì¢…ë£Œë ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void OnApplicationQuit()
     {
-        Debug.Log("¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ Á¾·áµË´Ï´Ù. µ¥ÀÌÅÍ¸¦ ÀúÀåÇÕ´Ï´Ù");
-        //ÇÁ·Î±×·¥ ²ø ¶§, ÀÚµ¿ ÀúÀå
+        Debug.Log("ì• í”Œë¦¬ì¼€ì´ì…˜ì´ ì¢…ë£Œë©ë‹ˆë‹¤. ë°ì´í„°ë¥¼ ì €ì¥í•©ë‹ˆë‹¤");
+        //í”„ë¡œê·¸ë¨ ëŒ ë•Œ, ìë™ ì €ì¥
         SavingData(SaveData.FileName, SaveData);
     }
 
     /// <summary>
-    /// SaveDataÅ¬·¡½ºÀÇ µ¥ÀÌÅÍ ½ºÅ©¸³Æ®¸¦ Æ¯Á¤ ÆÄÀÏ °æ·Î¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
-    /// (ÀÌ¹Ì µ¿ÀÏÇÑ °æ·Î¿¡ ÆÄÀÏÀÌ ÀÖ´Â °æ¿ì, µ¥ÀÌÅÍ¸¦ µ¤¾î¾º¿ì°í, ¾ø´Â °æ¿ì »õ·Ó°Ô »ı¼ºÇÔ)
+    /// SaveDataí´ë˜ìŠ¤ì˜ ë°ì´í„° ìŠ¤í¬ë¦½íŠ¸ë¥¼ íŠ¹ì • íŒŒì¼ ê²½ë¡œì— ì €ì¥í•˜ëŠ” í•¨ìˆ˜
+    /// (ì´ë¯¸ ë™ì¼í•œ ê²½ë¡œì— íŒŒì¼ì´ ìˆëŠ” ê²½ìš°, ë°ì´í„°ë¥¼ ë®ì–´ì”Œìš°ê³ , ì—†ëŠ” ê²½ìš° ìƒˆë¡­ê²Œ ìƒì„±í•¨)
     /// </summary>
     /// <param name="fileName"></param>
     /// <param name="SaveFile"></param>
@@ -39,34 +39,35 @@ public class SaveManager : MonoBehaviour
     {
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        // ÆÄÀÏ ½ºÆ®¸²À» ¿±´Ï´Ù. ÆÄÀÏÀÌ ¾øÀ¸¸é »õ·Î »ı¼ºÇÕ´Ï´Ù.
+        // íŒŒì¼ ìŠ¤íŠ¸ë¦¼ì„ ì—½ë‹ˆë‹¤. íŒŒì¼ì´ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±í•©ë‹ˆë‹¤.
         using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
         {
-            // BinaryFormatter¸¦ »ç¿ëÇÏ¿© °´Ã¼¸¦ Á÷·ÄÈ­ÇÕ´Ï´Ù.
+            // BinaryFormatterë¥¼ ì‚¬ìš©í•˜ì—¬ ê°ì²´ë¥¼ ì§ë ¬í™”í•©ë‹ˆë‹¤.
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(fileStream, SaveFile);
         }
     }
 
-    // ÆÄÀÏ¿¡¼­ SaveData¸¦ ºÒ·¯¿À´Â ÇÔ¼ö
+    // íŒŒì¼ì—ì„œ SaveDataë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜
     public static SaveDatas LoadingData(string fileName)
     {
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        // ÆÄÀÏÀÌ ¾øÀ¸¸é nullÀ» ¹İÈ¯
+        // íŒŒì¼ì´ ì—†ìœ¼ë©´ nullì„ ë°˜í™˜
         if (!File.Exists(filePath))
         {
-            Debug.Log($"{fileName} ÀÌ¶ó´Â ÀÌ¸§ÀÇ ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê¾Æ, ºÒ·¯¿ÀÁö ¾Ê¾Ò½À´Ï´Ù");
-            return null;
+            Debug.Log($"{fileName} ì´ë¼ëŠ” ì´ë¦„ì˜ íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•Šì•„, ë¶ˆëŸ¬ì˜¤ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤");
+            Debug.Log("ëŒ€ì‹  ì„¸ì´ë¸Œ ë°ì´í„°ë¥¼ ìƒˆë¡­ê²Œ ìƒì„±í•˜ì˜€ìŠµë‹ˆë‹¤");
+            return new SaveDatas();
         }
 
-        // ÆÄÀÏ ½ºÆ®¸²À» ¿­°í, BinaryFormatter¸¦ »ç¿ëÇÏ¿© Á÷·ÄÈ­µÈ °´Ã¼¸¦ º¹¿øÇÕ´Ï´Ù.
+        // íŒŒì¼ ìŠ¤íŠ¸ë¦¼ì„ ì—´ê³ , BinaryFormatterë¥¼ ì‚¬ìš©í•˜ì—¬ ì§ë ¬í™”ëœ ê°ì²´ë¥¼ ë³µì›í•©ë‹ˆë‹¤.
         using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
-            Debug.Log($"{fileName} ÀÌ¶ó´Â ÀÌ¸§ÀÇ ÆÄÀÏÀ» ºÒ·¯¿À´Âµ¥ ¼º°øÇÏ¿´½À´Ï´Ù");
-            return (SaveDatas)formatter.Deserialize(fileStream);  // Á÷·ÄÈ­µÈ µ¥ÀÌÅÍ¸¦ º¹¿ø
+            Debug.Log($"{fileName} ì´ë¼ëŠ” ì´ë¦„ì˜ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¤ëŠ”ë° ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤");
+            return (SaveDatas)formatter.Deserialize(fileStream);  // ì§ë ¬í™”ëœ ë°ì´í„°ë¥¼ ë³µì›
         }
     }
 }

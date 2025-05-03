@@ -1,17 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// OpenList_Button¿¡ ´Ş¾Æ¾ß ÇÏ´Â ½ºÅ©¸³Æ® ÄÄÆ÷³ÍÆ®·Î  <br/>
-/// ÇØ»óµµ Å©±â¸¦ ÁÙÀÌ°Å³ª ´Ã¸®´Â ±â´ÉÀ» ÇÏ´Â GameManager¼Ó ±â´ÉÀ» ¹öÆ°¿¡¼­ ½ÇÇàÇÒ ¼ö ÀÖµµ·Ï ¸¸µé¾îÁÜ
+/// OpenList_Buttonì— ë‹¬ì•„ì•¼ í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸ ì»´í¬ë„ŒíŠ¸ë¡œ  <br/>
+/// í•´ìƒë„ í¬ê¸°ë¥¼ ì¤„ì´ê±°ë‚˜ ëŠ˜ë¦¬ëŠ” ê¸°ëŠ¥ì„ í•˜ëŠ” GameManagerì† ê¸°ëŠ¥ì„ ë²„íŠ¼ì—ì„œ ì‹¤í–‰í•  ìˆ˜ ìˆë„ë¡ ë§Œë“¤ì–´ì¤Œ
 /// </summary>
 public class OpenList_Button : MonoBehaviour
 {
-    public void OpenClose_List()
+    [SerializeField] TextMeshProUGUI ButtonText;
+
+    private void Start()
+    {
+        //MenuSceneìœ¼ë¡œ ì”¬ì„ ë³€ê²½í–ˆì„ë•Œ, ìë™ìœ¼ë¡œ í”„ë¡œê·¸ë¨ í¬ê¸°ê°€, ë“±ë¡ ë²„íŠ¼ ê°¯ìˆ˜ì— ë§ì¶° ë³€í•˜ë„ë¡ ë§Œë“¤ê¸°
+        OpenClose_List_Button();
+    }
+
+    public void OpenClose_List_Button()
     {
         GameManager.Instance.ScreenSizeManagerSC.OpenClose_List();
+        //í…ìŠ¤íŠ¸
+        if (GameManager.Instance.ScreenSizeManagerSC.WasListOpened == false)
+        {
+            ButtonText.text = "Open List";
+            //Debug.Log($"ë¦¬ìŠ¤íŠ¸ ë‹«í˜ {GameManager.Instance.ScreenSizeManagerSC.WasListOpened}");
+        }
+        else
+        {
+            ButtonText.text = "Close List";
+            //Debug.Log($"ë¦¬ìŠ¤íŠ¸ ì—´ìŒ {GameManager.Instance.ScreenSizeManagerSC.WasListOpened}");
+        }
     }
 }

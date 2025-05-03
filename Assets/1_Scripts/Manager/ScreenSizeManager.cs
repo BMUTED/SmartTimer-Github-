@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -10,30 +9,34 @@ public class ScreenSizeManager : MonoBehaviour
 
     private void Start()
     {
-        ResetScreenSize(); //Å¸ÀÌ¸Ó ÇÁ·Î±×·¥ Ã³À½ ½ÇÇàÇÒ¶§, ÇØ»óµµ ¸®¼Â
+        ResetScreenSize(); //íƒ€ì´ë¨¸ í”„ë¡œê·¸ë¨ ì²˜ìŒ ì‹¤í–‰í• ë•Œ, í•´ìƒë„ ë¦¬ì…‹
         GameManager.Instance.SceneChangeManagerSC.OnSceneLoaded.AddListener(ResetScreenSize, 0);
     }
 
     /// <summary>
-    /// ¸Ş´º ¾À¿¡¼­ ¸®½ºÆ®¸¦ ¿­¾î³õ°í Å¸ÀÌ¸Ó ¾ÀÀ¸·Î µ¹¾Æ°¡´Â °æ¿ì, ´Ù½Ã ÇØ»óµµ¸¦ ¿ø»óº¹±Í ½ÃÅ°°í, <br/>
-    /// ¸®½ºÆ®°¡ ¿­·ÁÀÖ´ÂÁö ÆÇ´ÜÇÏ´Â ºÒ°ªµµ ÃÊ±âÈ­ ½ÃÅ°´Â ÇÔ¼ö
+    /// ë©”ë‰´ ì”¬ì—ì„œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì—´ì–´ë†“ê³  íƒ€ì´ë¨¸ ì”¬ìœ¼ë¡œ ëŒì•„ê°€ëŠ” ê²½ìš°, ë‹¤ì‹œ í•´ìƒë„ë¥¼ ì›ìƒë³µê·€ ì‹œí‚¤ê³ , <br/>
+    /// ë¦¬ìŠ¤íŠ¸ê°€ ì—´ë ¤ìˆëŠ”ì§€ íŒë‹¨í•˜ëŠ” ë¶ˆê°’ë„ ì´ˆê¸°í™” ì‹œí‚¤ëŠ” í•¨ìˆ˜
     /// </summary>
     void ResetScreenSize()
     {
-        WasListOpened = false;
-        SetResolutionKeepTop(200, 100, false);
+        if(GameManager.Instance.SceneChangeManagerSC.CurSceneName == "TimerScene")
+        {
+            WasListOpened = false;
+            SetResolutionKeepTop(200, 100, false);
+
+            //Debug.Log("ResetScreenSIzeì— ì˜í•´ WasListOpenedê°€ Falseë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤");
+        }
     }
 
     /// <summary>
-    /// ¹öÆ°¿¡¼­ È£ÃâµÇ´Â ÇÔ¼ö <br/>
-    /// ±æÀÌ°¡ ´Ã¾î³ª ÀÖÀ¸¸é, ÁÙÀÌ°í, <br/>
-    /// ÁÙ¾îµé¾î ÀÖ´Â °æ¿ì´Â ´Ã¸²
+    /// ë²„íŠ¼ì—ì„œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ <br/>
+    /// ê¸¸ì´ê°€ ëŠ˜ì–´ë‚˜ ìˆìœ¼ë©´, ì¤„ì´ê³ , <br/>
+    /// ì¤„ì–´ë“¤ì–´ ìˆëŠ” ê²½ìš°ëŠ” ëŠ˜ë¦¼
     /// <para>
-    /// ÇÁ·ÎÁ§Æ®ÀÇ ±âº» Å©±â´Â 200x100
+    /// í”„ë¡œì íŠ¸ì˜ ê¸°ë³¸ í¬ê¸°ëŠ” 200x100
     /// </para>
     /// <para>
-    /// ¿ØÁö ¸ğ¸£°ÚÀ¸³ª, ¾Æ·¡ ¿øµµ¿ì À§Ä¡ º¯°æ°ú ÇÔ²² »ç¿ëµÈ ÇØ»óµµ º¯°æ ÇÔ¼ö¿¡¼­´Â Å©±â°¡, x,y °¢°¢ 50 Á¤µµ ÀÛ°Ô ³ª¿À´Â ¹®Á¦°¡ ÀÖÀ½ <br/>
-    /// °í·Î, 200 x 100 / 200 x 400 ´ë½Å 250 x 150 / 250 x 450 À¸·Î ¼³Á¤ÇÏµµ·Ï ¸¸µé¾úÀ½
+    /// ë“±ë¡ í”„ë¡œê·¸ë¨ í•˜ë‚˜ë‹¹ ëŠ˜ì–´ë‚˜ëŠ” í¬ê¸°ëŠ” 20ìœ¼ë¡œ ì„¤ì •í•˜ì˜€ìŒ
     /// </para>
     /// </summary>
     public void OpenClose_List()
@@ -44,13 +47,14 @@ public class ScreenSizeManager : MonoBehaviour
         }
         else
         {
-            SetResolutionKeepTop(200, 400, false);
+            SetResolutionKeepTop(200, 100 + 20 * GameManager.Instance.SaveManagerSC.SaveData.RegistedProgramNum, false);
         }
 
         WasListOpened = !WasListOpened;
+        //Debug.Log($"WasListOpenedê°€ {!WasListOpened} ì—ì„œ {WasListOpened}ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤");
     }
 
-    #region È­¸é À§Ä¡¸¦ À¯ÁöÇÏ¸é¼­, ÇØ»óµµ¸¸ ¹Ù²Ù´Â ±â´ÉÀ» À§ÇÑ ÄÚµåµé
+    #region í™”ë©´ ìœ„ì¹˜ë¥¼ ìœ ì§€í•˜ë©´ì„œ, í•´ìƒë„ë§Œ ë°”ê¾¸ëŠ” ê¸°ëŠ¥ì„ ìœ„í•œ ì½”ë“œë“¤
 #if UNITY_STANDALONE_WIN
 
     [DllImport("user32.dll")]
@@ -87,7 +91,7 @@ public class ScreenSizeManager : MonoBehaviour
 #endif
 
     /// <summary>
-    /// Ã¢ ÇØ»óµµ¸¦ º¯°æÇÏ°í, »ó´Ü À§Ä¡¸¦ °íÁ¤½ÃÅµ´Ï´Ù. (¿ÀÂ÷ º¸Á¤ Æ÷ÇÔ)
+    /// ì°½ í•´ìƒë„ë¥¼ ë³€ê²½í•˜ê³ , ìƒë‹¨ ìœ„ì¹˜ë¥¼ ê³ ì •ì‹œí‚µë‹ˆë‹¤. (ì˜¤ì°¨ ë³´ì • í¬í•¨)
     /// </summary>
     public void SetResolutionKeepTop(int newClientWidth, int newClientHeight, bool fullScreen = false)
     {
@@ -101,29 +105,29 @@ public class ScreenSizeManager : MonoBehaviour
     private IEnumerator SetResolutionAndAdjustWindow(int newClientWidth, int newClientHeight, bool fullScreen)
     {
 #if UNITY_STANDALONE_WIN
-        // ÇöÀç Ã¢ À§Ä¡ ÀúÀå
+        // í˜„ì¬ ì°½ ìœ„ì¹˜ ì €ì¥
         IntPtr windowHandle = GetActiveWindow();
         RECT rect = new RECT();
         if (!GetWindowRect(windowHandle, ref rect))
         {
-            Debug.LogError("GetWindowRect ½ÇÆĞ");
+            Debug.LogError("GetWindowRect ì‹¤íŒ¨");
             yield break;
         }
 
         int currentX = rect.left;
         int currentTopY = rect.top;
 
-        // ÇØ»óµµ º¯°æ
+        // í•´ìƒë„ ë³€ê²½
         Screen.SetResolution(newClientWidth, newClientHeight, fullScreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
 
-        // ÇÑ ÇÁ·¹ÀÓ ´ë±â
+        // í•œ í”„ë ˆì„ ëŒ€ê¸°
         yield return null;
 
-        // Ã¢ ½ºÅ¸ÀÏ °¡Á®¿À±â
+        // ì°½ ìŠ¤íƒ€ì¼ ê°€ì ¸ì˜¤ê¸°
         uint style = GetWindowLong(windowHandle, GWL_STYLE);
         uint exStyle = GetWindowLong(windowHandle, GWL_EXSTYLE);
 
-        // Å¬¶óÀÌ¾ğÆ® ¿µ¿ªÀ» ±âÁØÀ¸·Î ÀüÃ¼ Ã¢ Å©±â º¸Á¤
+        // í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì„ ê¸°ì¤€ìœ¼ë¡œ ì „ì²´ ì°½ í¬ê¸° ë³´ì •
         RECT clientRect = new RECT
         {
             left = 0,
@@ -133,17 +137,17 @@ public class ScreenSizeManager : MonoBehaviour
         };
         if (!AdjustWindowRectEx(ref clientRect, style, false, exStyle))
         {
-            Debug.LogError("AdjustWindowRectEx ½ÇÆĞ");
+            Debug.LogError("AdjustWindowRectEx ì‹¤íŒ¨");
             yield break;
         }
 
         int adjustedWidth = clientRect.right - clientRect.left;
         int adjustedHeight = clientRect.bottom - clientRect.top;
 
-        // Ã¢ À§Ä¡ ¹× Å©±â ¼³Á¤
+        // ì°½ ìœ„ì¹˜ ë° í¬ê¸° ì„¤ì •
         SetWindowPos(windowHandle, HWND_TOP, currentX, currentTopY, adjustedWidth, adjustedHeight, SWP_SHOWWINDOW);
 #else
-        Debug.LogWarning("ÇöÀç ÇÃ·§Æû¿¡¼­´Â Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.");
+        Debug.LogWarning("í˜„ì¬ í”Œë«í¼ì—ì„œëŠ” ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         yield break;
 #endif
     }

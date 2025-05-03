@@ -21,18 +21,28 @@ public class RegisterButton : MonoBehaviour
     }
 
     /// <summary>
-    /// µî·Ï ¹öÆ°ÀÇ ÅØ½ºÆ®¸¦, µî·ÏÇÑ ÇÁ·Î±×·¥ÀÇ ÀÌ¸§À¸·Î ¹Ù²ãÁÖ´Â ÇÔ¼ö
+    /// ë“±ë¡ ë²„íŠ¼ì˜ í…ìŠ¤íŠ¸ë¥¼, ë“±ë¡í•œ í”„ë¡œê·¸ë¨ì˜ ì´ë¦„ìœ¼ë¡œ ë°”ê¿”ì£¼ëŠ” í•¨ìˆ˜
     /// </summary>
     void ChangeButtonText()
     {
         if((ProgramCheckSC.TargetProcessName.Count-1) >= Index) 
         {
-            ButtonText.text = ProgramCheckSC.TargetProcessName[Index];
+            //ë“±ë¡ëœ í”„ë¡œê·¸ë¨ ì´ë¦„ì´ ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜ì— ì˜í•´ ë¹ˆì¹¸ì¸ ê²½ìš°
+            if(ProgramCheckSC.TargetProcessName[Index] == string.Empty || ProgramCheckSC.TargetProcessName[Index] == "")
+            {
+                ButtonText.text = "Set Program";
+            }
+            //ì •ìƒì ì¸ ê²½ìš°
+            else
+            {
+                ButtonText.text = ProgramCheckSC.TargetProcessName[Index];
+            }
+                
         }
     }
 
     /// <summary>
-    /// ÇöÀç Æ÷Ä¿½Ì µÈ Ã¢À», »õ·Î¿î µî·Ï ÇÁ·Î±×·¥À¸·Î ¼³Á¤ÇÏ´Â ÇÔ¼ö
+    /// í˜„ì¬ í¬ì»¤ì‹± ëœ ì°½ì„, ìƒˆë¡œìš´ ë“±ë¡ í”„ë¡œê·¸ë¨ìœ¼ë¡œ ì„¤ì •í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void RegisterNewProgram()
     {
@@ -42,7 +52,7 @@ public class RegisterButton : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹öÆ°ÀÌ »ç¶óÁú¶§, È£ÃâµÇ´Â, TimerManager¼Ó µî·ÏµÈ ÇÁ·Î±×·¥À» Áö¿ì´Â ±â´ÉÀ» ÇÏ´Â ÇÔ¼ö
+    /// ë²„íŠ¼ì´ ì‚¬ë¼ì§ˆë•Œ, í˜¸ì¶œë˜ëŠ”, TimerManagerì† ë“±ë¡ëœ í”„ë¡œê·¸ë¨ì„ ì§€ìš°ëŠ” ê¸°ëŠ¥ì„ í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     public void RemoveCurrentProgramOnButton()
     {
@@ -52,7 +62,7 @@ public class RegisterButton : MonoBehaviour
         }
         else
         {  
-            Debug.Log($"ÇöÀç µî·Ï ÇÁ·Î¼¼½º ¸®½ºÆ® Å©±âÀÎ : {GameManager.Instance.TimerManagerSC.ProgramCheckSC.TargetProcessName.Count}º¸´Ù µî·Ï ¹öÆ° ÀÎµ¦½º °ªÀÎ {Index}ÀÌ ´õ Å©°Å³ª °°¾Æ¼­, ¸®½ºÆ® ¼Ó °ª Á¦°Å ¸í·ÉÀÌ ÀÌÇàµÇÁö ¾ÊÀ½");
+            Debug.Log($"í˜„ì¬ ë“±ë¡ í”„ë¡œì„¸ìŠ¤ ë¦¬ìŠ¤íŠ¸ í¬ê¸°ì¸ : {GameManager.Instance.TimerManagerSC.ProgramCheckSC.TargetProcessName.Count}ë³´ë‹¤ ë“±ë¡ ë²„íŠ¼ ì¸ë±ìŠ¤ ê°’ì¸ {Index}ì´ ë” í¬ê±°ë‚˜ ê°™ì•„ì„œ, ë¦¬ìŠ¤íŠ¸ ì† ê°’ ì œê±° ëª…ë ¹ì´ ì´í–‰ë˜ì§€ ì•ŠìŒ");
         }
     }
 }
