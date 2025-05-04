@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
      
     private void Awake()
     {
-        SaveData = LoadingData(SaveData.FileName);
+        LoadData(SaveData.FileName);
         OnSaveFileLoaded.Invoke();
     }
 
@@ -49,25 +49,21 @@ public class SaveManager : MonoBehaviour
     }
 
     // 파일에서 SaveData를 불러오는 함수
-    public static SaveDatas LoadingData(string fileName)
+    public void LoadData(string fileName)
     {
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
 
-        // 파일이 없으면 null을 반환
-        if (!File.Exists(filePath))
+        // 파일이 있을때만
+        if (File.Exists(filePath))
         {
-            Debug.Log($"{fileName} 이라는 이름의 파일이 존재하지 않아, 불러오지 않았습니다");
-            Debug.Log("대신 세이브 데이터를 새롭게 생성하였습니다");
-            return new SaveDatas();
-        }
+            // 파일 스트림을 열고, BinaryFormatter를 사용하여 직렬화된 객체를 복원합니다.
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
 
-        // 파일 스트림을 열고, BinaryFormatter를 사용하여 직렬화된 객체를 복원합니다.
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            Debug.Log($"{fileName} 이라는 이름의 파일을 불러오는데 성공하였습니다");
-            return (SaveDatas)formatter.Deserialize(fileStream);  // 직렬화된 데이터를 복원
+                Debug.Log($"{fileName} 이라는 이름의 파일을 불러오는데 성공하였습니다");
+                SaveData = (SaveDatas)formatter.Deserialize(fileStream);  // 직렬화된 데이터를 복원
+            }
         }
     }
 }

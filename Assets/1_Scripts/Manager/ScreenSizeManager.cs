@@ -54,6 +54,14 @@ public class ScreenSizeManager : MonoBehaviour
         //Debug.Log($"WasListOpened가 {!WasListOpened} 에서 {WasListOpened}으로 변경되었습니다");
     }
 
+    /// <summary>
+    /// 등록 버튼을 늘리거나 줄일때마다, 프로그램의 크기를 이에 맞게 조절해주는 함수
+    /// </summary>
+    public void AdjustScreenSizeAsButtonNum()
+    {
+        SetResolutionKeepTop(200, 100 + 20 * GameManager.Instance.SaveManagerSC.SaveData.RegistedProgramNum, false);
+    }
+
     #region 화면 위치를 유지하면서, 해상도만 바꾸는 기능을 위한 코드들
 #if UNITY_STANDALONE_WIN
 

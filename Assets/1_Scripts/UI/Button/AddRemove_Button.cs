@@ -52,6 +52,8 @@ public class AddRemove_Button : MonoBehaviour
             NewRegisterButton.GetComponent<RegisterButton>().Index = RegisterButtons.Count-1;
 
             GameManager.Instance.SaveManagerSC.SaveData.RegistedProgramNum += 1;
+
+            GameManager.Instance.ScreenSizeManagerSC.AdjustScreenSizeAsButtonNum();
         }
     }
 
@@ -65,6 +67,8 @@ public class AddRemove_Button : MonoBehaviour
             RegisterButtons.RemoveAt(RegisterButtons.Count - 1); //리스트에서도 삭제
 
             GameManager.Instance.SaveManagerSC.SaveData.RegistedProgramNum -= 1;
+
+            GameManager.Instance.ScreenSizeManagerSC.AdjustScreenSizeAsButtonNum();
         }
         else
         {
