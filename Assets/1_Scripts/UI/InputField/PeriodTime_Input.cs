@@ -5,39 +5,39 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// MenuScene ¼Ó PeriodTime_InputFieldÀÇ ¿©·¯°¡Áö ÇÔ¼öµéÀ» ´ã°íÀÖ´Â ½ºÅ©¸³Æ®
+/// MenuScene ì† PeriodTime_InputFieldì˜ ì—¬ëŸ¬ê°€ì§€ í•¨ìˆ˜ë“¤ì„ ë‹´ê³ ìˆëŠ” ìŠ¤í¬ë¦½íŠ¸
 /// </summary>
 public class PeriodTime_Input : MonoBehaviour
 {
     /// <summary>
-    /// InputField¿¡ ¾Æ¹«°Íµµ ¾È ÀûÀ»½Ã¿¡ ³ª¿À´Â ¼³¸í¿ë ÅØ½ºÆ®
+    /// InputFieldì— ì•„ë¬´ê²ƒë„ ì•ˆ ì ì„ì‹œì— ë‚˜ì˜¤ëŠ” ì„¤ëª…ìš© í…ìŠ¤íŠ¸
     /// </summary>
     [SerializeField] TextMeshProUGUI PlaceHolder;
 
     /// <summary>
-    /// InputField¿¡ »ç¿ëÀÚ°¡ ÀûÀº ±ÛÀÚ°¡ Ç¥½ÃµÇ´Â ÅØ½ºÆ®
+    /// InputFieldì— ì‚¬ìš©ìê°€ ì ì€ ê¸€ìê°€ í‘œì‹œë˜ëŠ” í…ìŠ¤íŠ¸
     /// </summary>
     [SerializeField] TMP_InputField TimeOut_InputField;
 
     private void Start()
     {
-        PlaceHolder.text = $"Enter TimeOut ({GameManager.Instance.TimerManagerSC.ProgramCheckSC.DefaultPeriodTime}s)...";
+        PlaceHolder.text = $"Enter TimeOut ({GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime}s)...";
     }
 
-    #region InputField ³»¿¡ ÀÖ´Â ÀÎ½ºÆåÅÍ ÀÌº¥Æ®¿¡¼­ »ç¿ëµÇ´Â ÇÔ¼öµé
+    #region InputField ë‚´ì— ìˆëŠ” ì¸ìŠ¤í™í„° ì´ë²¤íŠ¸ì—ì„œ ì‚¬ìš©ë˜ëŠ” í•¨ìˆ˜ë“¤
 
     /// <summary>
-    /// ÀÔ·ÂµÈ ¹®ÀÚ¿­À» ½Ç¼öÇüÀ¸·Î ¹Ù²Ù¾î DefaultPeriodTime¿¡ ÀúÀåÇÏ°í, InputField ÅØ½ºÆ® Ã¢¿¡, ÀúÀåµÇ¾úÀ½À» Ç¥±âÇÏ´Â ÇÔ¼ö
+    /// ì…ë ¥ëœ ë¬¸ìì—´ì„ ì‹¤ìˆ˜í˜•ìœ¼ë¡œ ë°”ê¾¸ì–´ DefaultPeriodTimeì— ì €ì¥í•˜ê³ , InputField í…ìŠ¤íŠ¸ ì°½ì—, ì €ì¥ë˜ì—ˆìŒì„ í‘œê¸°í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     /// <param name="InputTime"></param>
     public void SetPeriodTime(string InputTime)
     {
-        float.TryParse(InputTime, out GameManager.Instance.TimerManagerSC.ProgramCheckSC.DefaultPeriodTime);
+        float.TryParse(InputTime, out GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime);
         TimeOut_InputField.text = string.Empty;
 
-        PlaceHolder.text = $"-TimeOut : {GameManager.Instance.TimerManagerSC.ProgramCheckSC.DefaultPeriodTime} (s)-";
+        PlaceHolder.text = $"-TimeOut : {GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime} (s)-";
 
-        Debug.Log($"DefaultPeriodTimeÀ» {GameManager.Instance.TimerManagerSC.ProgramCheckSC.DefaultPeriodTime}·Î ÀúÀåÇÏ¿´½À´Ï´Ù");
+        Debug.Log($"DefaultPeriodTimeì„ {GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime}ë¡œ ì €ì¥í•˜ì˜€ìŠµë‹ˆë‹¤");
     }
     #endregion
 }

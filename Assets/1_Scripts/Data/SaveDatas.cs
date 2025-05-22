@@ -1,22 +1,26 @@
 using System;
 using System.Collections.Generic;
-[Serializable]  // BinaryFormatter´Â [Serializable] Æ¯¼ºÀÌ ÀÖ¾î¾ß ÀÛµ¿ÇÏ±âµµ, ÇÏ°í ¿¡µğÅÍ¿¡¼­ È®ÀÎÇÒ ¿ëµµ·Î Serializable·Î »ç¿ë
+using UnityEngine;
+[Serializable]  // BinaryFormatterëŠ” [Serializable] íŠ¹ì„±ì´ ìˆì–´ì•¼ ì‘ë™í•˜ê¸°ë„, í•˜ê³  ì—ë””í„°ì—ì„œ í™•ì¸í•  ìš©ë„ë¡œ Serializableë¡œ ì‚¬ìš©
 public class SaveDatas 
 {
-    //È®ÀåÀÚ´Â ¾Æ¹« ÀÇ¹Ì ¾øÀ½, ¾Æ¹«°Å³ª ½áµµ µÊ (¾Æ·¡´Â Save ÆÄÀÏÀÌ¶ó´Â Á¡À» Á¦¸ñ¿¡¼­ ¸í½ÃÇÏ±â À§ÇØ save·Î ÀÛ¼ºÇÔ)
+    //í™•ì¥ìëŠ” ì•„ë¬´ ì˜ë¯¸ ì—†ìŒ, ì•„ë¬´ê±°ë‚˜ ì¨ë„ ë¨ (ì•„ë˜ëŠ” Save íŒŒì¼ì´ë¼ëŠ” ì ì„ ì œëª©ì—ì„œ ëª…ì‹œí•˜ê¸° ìœ„í•´ saveë¡œ ì‘ì„±í•¨)
     public string FileName => "TimerData.save";
 
     /// <summary>
-    /// µî·ÏµÈ ÇÁ·Î±×·¥ÀÇ °¹¼ö, ¸Ş´º ¾ÀÀ¸·Î ³Ñ¾î°¬À»¶§, ¹öÆ°À» ¸î°³±îÁö »ı¼ºÇÒ°ÇÁö °áÁ¤ÇÏ´Âµ¥ »ç¿ëµÊ
+    /// ë“±ë¡ëœ í”„ë¡œê·¸ë¨ì˜ ê°¯ìˆ˜, ë©”ë‰´ ì”¬ìœ¼ë¡œ ë„˜ì–´ê°”ì„ë•Œ, ë²„íŠ¼ì„ ëª‡ê°œê¹Œì§€ ìƒì„±í• ê±´ì§€ ê²°ì •í•˜ëŠ”ë° ì‚¬ìš©ë¨
     /// </summary>
     public int RegistedProgramNum = 1;
 
     /// <summary>
-    /// ¼¼ÀÌºê ÆÄÀÏ¿¡ ÀúÀåµÉ, µî·ÏµÈ ÇÁ·Î±×·¥ ¸®½ºÆ® (ProgramCheckÀÇ TargetProcessName °ªµéÀ» ÀúÀåÇÏ°Å³ª, µ¤¾î¾º¿ï¶§ »ç¿ë)
+    /// ì„¸ì´ë¸Œ íŒŒì¼ì— ì €ì¥ë , ë“±ë¡ëœ í”„ë¡œê·¸ë¨ ë¦¬ìŠ¤íŠ¸ (ProgramCheckì˜ TargetProcessName ê°’ë“¤ì„ ì €ì¥í•˜ê±°ë‚˜, ë®ì–´ì”Œìš¸ë•Œ ì‚¬ìš©)
     /// </summary>
     public List<string> RegisterdProcessNames;
 
-    //½Ã°£°ú °ü·ÃµÈ µ¥ÀÌÅÍµé
+    [Tooltip("í˜„ì¬ ìµœìƒë‹¨ì— ìˆëŠ” ì°½ì´ ë¬´ì—‡ì¸ì§€ ê²€ì‚¬í•  ì£¼ê¸°")]
+    public float DefaultPeriodTime;
+
+    //ì‹œê°„ê³¼ ê´€ë ¨ëœ ë°ì´í„°ë“¤
     public float HourTime;
     public float MinuteTime;
     public float SecondTime;

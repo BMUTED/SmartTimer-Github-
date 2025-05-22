@@ -1,15 +1,15 @@
 
-//ÇÒÀÏ : IsInputDetected ºÒ°ª¿¡ µû¶ó, IsIdleÀ» True ¶Ç´Â False·Î º¯°æÇÏ´Â Å¸ÀÌ¸Ó ÇÔ¼ö ¸¸µé¾î¾ßÇÔ
+//í• ì¼ : IsInputDetected ë¶ˆê°’ì— ë”°ë¼, IsIdleì„ True ë˜ëŠ” Falseë¡œ ë³€ê²½í•˜ëŠ” íƒ€ì´ë¨¸ í•¨ìˆ˜ ë§Œë“¤ì–´ì•¼í•¨
 
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 /// <summary>
-/// Àá¼ö »óÅÂÀÎÁö ¾Æ´ÑÁö È®ÀÎÇÏ´Â ±â´ÉÀ» ÇÏ´Â ½ºÅ©¸³Æ® <br/>
-/// Àá¼ö »óÅÂ È®ÀÎ¿ë Å¸ÀÌ¸Óµµ ÀÌ ½ºÅ©¸³Æ®¿¡¼­ µ¹¾Æ°¨
+/// ìž ìˆ˜ ìƒíƒœì¸ì§€ ì•„ë‹Œì§€ í™•ì¸í•˜ëŠ” ê¸°ëŠ¥ì„ í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸ <br/>
+/// ìž ìˆ˜ ìƒíƒœ í™•ì¸ìš© íƒ€ì´ë¨¸ë„ ì´ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ëŒì•„ê°
 /// <para>
-/// + ÇöÀç ÀÌ ½ºÅ©¸³Æ®ÀÇ ±â´ÉÀº »ç¿ëµÇ°í ÀÖÁö ¾ÊÀ½, Update ¹®¿¡ ÀÖ´Â µÎ ÇÔ¼öÀÇ ÁÖ¼®Ã³¸®¸¦ Ãë¼ÒÇÏ¸é ÀÛµ¿Àº ÇÏ°ÚÁö¸¸, Àá¼ö »óÅÂ ÆÇº°ÀÌ Á¤È®ÇÏÁö ¾ÊÀº ¹®Á¦°¡ Á¸ÀçÇÔ <br/>
-/// (Window API¸¦ ÀÌ¿ëÇßÀ½¿¡µµ ºÒ±¸, Å¸ÀÌ¸Ó ÇÁ·Î±×·¥ÀÌ Æ÷Ä¿½Ì µÇ¾îÀÖÁö ¾ÊÀ» ¶§¿¡´Â, Å°º¸µå ÀÔ·Â°ú, ¸¶¿ì½ºÀÇ À§Ä¡ ÀÌµ¿À» °¨ÁöÇÏÁö ¸øÇÏ´Â ¹®Á¦°¡ ºó¹øÇÏ°Ô ¹ß»ý)
+/// + í˜„ìž¬ ì´ ìŠ¤í¬ë¦½íŠ¸ì˜ ê¸°ëŠ¥ì€ ì‚¬ìš©ë˜ê³  ìžˆì§€ ì•ŠìŒ, Update ë¬¸ì— ìžˆëŠ” ë‘ í•¨ìˆ˜ì˜ ì£¼ì„ì²˜ë¦¬ë¥¼ ì·¨ì†Œí•˜ë©´ ìž‘ë™ì€ í•˜ê² ì§€ë§Œ, ìž ìˆ˜ ìƒíƒœ íŒë³„ì´ ì •í™•í•˜ì§€ ì•Šì€ ë¬¸ì œê°€ ì¡´ìž¬í•¨ <br/>
+/// (Window APIë¥¼ ì´ìš©í–ˆìŒì—ë„ ë¶ˆêµ¬, íƒ€ì´ë¨¸ í”„ë¡œê·¸ëž¨ì´ í¬ì»¤ì‹± ë˜ì–´ìžˆì§€ ì•Šì„ ë•Œì—ëŠ”, í‚¤ë³´ë“œ ìž…ë ¥ê³¼, ë§ˆìš°ìŠ¤ì˜ ìœ„ì¹˜ ì´ë™ì„ ê°ì§€í•˜ì§€ ëª»í•˜ëŠ” ë¬¸ì œê°€ ë¹ˆë²ˆí•˜ê²Œ ë°œìƒ)
 /// </para>
 /// </summary>
 public class AFK_Checker : MonoBehaviour
@@ -33,21 +33,21 @@ public class AFK_Checker : MonoBehaviour
     }
 
     /// <summary>
-    /// Å°º¸µå ÀÔ·ÂÀÌ³ª, ¸¶¿ì½º Å¬¸¯ µîÀÇ ÀÔ·Â ¶Ç´Â ¸¶¿ì½º ¿òÁ÷ÀÓÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+    /// í‚¤ë³´ë“œ ìž…ë ¥ì´ë‚˜, ë§ˆìš°ìŠ¤ í´ë¦­ ë“±ì˜ ìž…ë ¥ ë˜ëŠ” ë§ˆìš°ìŠ¤ ì›€ì§ìž„ì´ ìžˆëŠ”ì§€ ì—†ëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
     /// </summary>
     void InputDetecting()
     {
         lastMousePosition = GetMousePos();
 
-        // Å°º¸µå, ¸¶¿ì½º Å¬¸¯, ¶Ç´Â ¸¶¿ì½º ¿òÁ÷ÀÓÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎ
-        //ÀÌ ±â´ÉÀº, ÇÁ·Î±×·¥ÀÌ Æ÷Ä¿½Ì µÇ¾îÀÖÁö ¾ÊÀº °æ¿ì´Â Å½ÁöÇÏÁö ¸øÇÔ
+        // í‚¤ë³´ë“œ, ë§ˆìš°ìŠ¤ í´ë¦­, ë˜ëŠ” ë§ˆìš°ìŠ¤ ì›€ì§ìž„ì´ ìžˆëŠ”ì§€ ì—†ëŠ”ì§€ í™•ì¸
+        //ì´ ê¸°ëŠ¥ì€, í”„ë¡œê·¸ëž¨ì´ í¬ì»¤ì‹± ë˜ì–´ìžˆì§€ ì•Šì€ ê²½ìš°ëŠ” íƒì§€í•˜ì§€ ëª»í•¨
         if (Input.anyKey || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || GetMousePos() != lastMousePosition) 
         {
             IsInputDetected = true;
             SetIsTimerStopBeingAFK(false);
-            Debug.Log("Å°º¸µå ÀÔ·ÂÀÌ °¨ÁöµÇ¾î, Àá¼ö »óÅÂ°¡ ÇØÁ¦µÇ¾ú½À´Ï´Ù");
+            Debug.Log("í‚¤ë³´ë“œ ìž…ë ¥ì´ ê°ì§€ë˜ì–´, ìž ìˆ˜ ìƒíƒœê°€ í•´ì œë˜ì—ˆìŠµë‹ˆë‹¤");
         }
-        else //¾Æ¹« ÀÔ·Â, ¿òÁ÷ÀÓ ¹ÝÀÀÀÌ ¾ø¾î¼­, Àá¼öÀÎ »óÅÂ·Î ÆÇ´Ü
+        else //ì•„ë¬´ ìž…ë ¥, ì›€ì§ìž„ ë°˜ì‘ì´ ì—†ì–´ì„œ, ìž ìˆ˜ì¸ ìƒíƒœë¡œ íŒë‹¨
         {
             IsInputDetected = false;
         }
@@ -55,14 +55,14 @@ public class AFK_Checker : MonoBehaviour
 
     void AFKTimerFlowing()
     {
-        if (!IsInputDetected) //»ç¿ëÀÚ°¡ Àá¼ö »óÅÂÀÏ¶§
+        if (!IsInputDetected) //ì‚¬ìš©ìžê°€ ìž ìˆ˜ ìƒíƒœì¼ë•Œ
         {
             IdleTimer += Time.deltaTime;
-            if (IdleTimer >= GameManager.Instance.TimerManagerSC.ProgramCheckSC.DefaultPeriodTime) //DefaultPeriodTime ÃÊ ÀÌ»ó Àá¼ö »óÅÂÀÎ °æ¿ì
+            if (IdleTimer >= GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime) //DefaultPeriodTime ì´ˆ ì´ìƒ ìž ìˆ˜ ìƒíƒœì¸ ê²½ìš°
             {
-                IdleTimer = 0; //Àá¼ö Å¸ÀÌ¸Ó ÃÊ±âÈ­
+                IdleTimer = 0; //ìž ìˆ˜ íƒ€ì´ë¨¸ ì´ˆê¸°í™”
                 SetIsTimerStopBeingAFK(true);
-                Debug.Log($"{GameManager.Instance.TimerManagerSC.ProgramCheckSC.DefaultPeriodTime} µ¿¾È, ÀÔ·ÂÀÌ ¾ø¾î¼­, Å¸ÀÌ¸Ó°¡, Àá¼ö »óÅÂ¶ó ÆÇ´ÜµÇ¾ú½À´Ï´Ù");
+                Debug.Log($"{GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime} ë™ì•ˆ, ìž…ë ¥ì´ ì—†ì–´ì„œ, íƒ€ì´ë¨¸ê°€, ìž ìˆ˜ ìƒíƒœë¼ íŒë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤");
             }
         }
 
@@ -73,8 +73,8 @@ public class AFK_Checker : MonoBehaviour
     }
 
     /// <summary>
-    /// IsTimerStopBeingAFKÀÇ °ªÀ» ¼öÁ¤ÇÏ°í ½ÍÀ»¶§, È£ÃâÇÏ´Â ÇÔ¼ö <br/>
-    /// Å¸ÀÌ¸Ó Àç»ý ¿©ºÎ¿¡ µû¸¥, »ö µ¿±âÈ­¸¦ À§ÇØ, ¹«Á¶°ÇÀûÀ¸·Î ÀÌ ÇÔ¼ö¸¦ ÅëÇØ, ºÒ°ªÀ» ¹Ù²ã¾ß¸¸ ÇÔ
+    /// IsTimerStopBeingAFKì˜ ê°’ì„ ìˆ˜ì •í•˜ê³  ì‹¶ì„ë•Œ, í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜ <br/>
+    /// íƒ€ì´ë¨¸ ìž¬ìƒ ì—¬ë¶€ì— ë”°ë¥¸, ìƒ‰ ë™ê¸°í™”ë¥¼ ìœ„í•´, ë¬´ì¡°ê±´ì ìœ¼ë¡œ ì´ í•¨ìˆ˜ë¥¼ í†µí•´, ë¶ˆê°’ì„ ë°”ê¿”ì•¼ë§Œ í•¨
     /// </summary>
     /// <param name="Value"></param>
     public void SetIsTimerStopBeingAFK(bool Value)
@@ -84,7 +84,7 @@ public class AFK_Checker : MonoBehaviour
         GameManager.Instance.TimerManagerSC.TimerFlowSC.TimeFlowingCheck();
     }
 
-    #region ¸¶¿ì½º À§Ä¡¸¦ ±¸ÇÏ´Â ±â´É°ú °ü·ÃµÈ ÄÚµåµé
+    #region ë§ˆìš°ìŠ¤ ìœ„ì¹˜ë¥¼ êµ¬í•˜ëŠ” ê¸°ëŠ¥ê³¼ ê´€ë ¨ëœ ì½”ë“œë“¤
 #if UNITY_STANDALONE_WIN
 
     [StructLayout(LayoutKind.Sequential)]
@@ -99,8 +99,8 @@ public class AFK_Checker : MonoBehaviour
 
 #endif
     /// <summary>
-    /// ÇöÀç ¸¶¿ì½º À§Ä¡¸¦ Vector2·Î ¹ÝÈ¯ÇÕ´Ï´Ù. <br/>
-    /// WindowAPI¸¦ »ç¿ëÇÑ ¹æ½ÄÀ¸·Î Input.mousePos¿Í ´Ù¸£°Ô ¸¶¿ì½º°¡ ÇÁ·Î±×·¥ È­¸é ¹ÛÀ¸·Î ³ª°¡µµ, À§Ä¡¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù
+    /// í˜„ìž¬ ë§ˆìš°ìŠ¤ ìœ„ì¹˜ë¥¼ Vector2ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤. <br/>
+    /// WindowAPIë¥¼ ì‚¬ìš©í•œ ë°©ì‹ìœ¼ë¡œ Input.mousePosì™€ ë‹¤ë¥´ê²Œ ë§ˆìš°ìŠ¤ê°€ í”„ë¡œê·¸ëž¨ í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë„, ìœ„ì¹˜ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤
     /// </summary>
     private Vector2 GetMousePos()
     {
@@ -111,7 +111,7 @@ public class AFK_Checker : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Ä¿¼­ À§Ä¡¸¦ °¡Á®¿ÀÁö ¸øÇß½À´Ï´Ù.");
+            Debug.LogWarning("ì»¤ì„œ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
             return Vector2.zero;
         }
 #else

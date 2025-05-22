@@ -23,8 +23,6 @@ public class ProgramCheck : MonoBehaviour
     //주기 타이머의 진행 여부
     public bool IsPeriodTimerFlowing;
 
-    [Tooltip ("현재 최상단에 있는 창이 무엇인지 검사할 주기")]
-    public float DefaultPeriodTime; //현재 최상단에 있는 창이 무엇인지 검사할 주기
     public float PeriodTimer; //주기 전용 타이머
 
     [SerializeField] ProcessInfo PreviousProcess;
@@ -34,6 +32,8 @@ public class ProgramCheck : MonoBehaviour
 
     private void Start()
     {
+        
+
         PreviousProcess = new ProcessInfo();
         CurProcess = new ProcessInfo();
 
@@ -58,9 +58,9 @@ public class ProgramCheck : MonoBehaviour
         if(IsPeriodTimerFlowing)
         {
             PeriodTimer += Time.deltaTime;
-            if(PeriodTimer >= DefaultPeriodTime)
+            if(PeriodTimer >= GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime)
             {
-                PeriodTimer -= DefaultPeriodTime;
+                PeriodTimer -= GameManager.Instance.SaveManagerSC.SaveData.DefaultPeriodTime;
                 bool IsTargetProcessOnTop = false;
                 for (int Index = 0; Index < TargetProcessName.Count; Index++)
                 {
